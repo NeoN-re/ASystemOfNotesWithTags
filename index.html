@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система заметок с тегами</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Система заметок с тегами</h1>
+            <p>Создавайте, организуйте и находите заметки мгновенно</p>
+        </div>
+
+        <div class="content">
+            <!-- Сообщения -->
+            <div id="message" class="message"></div>
+
+            <!-- Статистика -->
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalNotes">0</div>
+                    <div class="stat-label">Всего заметок</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalTags">0</div>
+                    <div class="stat-label">Уникальных тегов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="recentNotes">0</div>
+                    <div class="stat-label">За последние 7 дней</div>
+                </div>
+            </div>
+
+            <!-- Форма -->
+            <div class="note-form" id="noteForm">
+                <h2 style="margin-bottom: 20px; color: #495057;">
+                    <span id="formTitle">Новая заметка</span>
+                </h2>
+
+                <div class="form-group">
+                    <label for="noteTitle">Заголовок *</label>
+                    <input type="text" id="noteTitle" placeholder="Введите заголовок заметки..." maxlength="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="noteContent">Содержание *</label>
+                    <textarea id="noteContent" placeholder="Введите текст заметки... Используйте #тег для автоматического тегирования"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="noteTags">Теги (через запятую или # в тексте)</label>
+                    <input type="text" id="noteTags" placeholder="например: работа, важно, идеи">
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-primary" onclick="saveNote()">
+                        Сохранить
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetForm()">
+                        Отмена
+                    </button>
+                </div>
+            </div>
+
+            <!-- Поиск и фильтры -->
+            <div class="controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Поиск по заметкам..." oninput="filterNotes()">
+                </div>
+            </div>
+
+            <div class="tag-filter" id="tagFilter">
+                <span style="color: #6c757d; font-weight: 600;">Фильтр по тегам:</span>
+                <button class="tag-btn active" onclick="filterByTag('')">Все</button>
+            </div>
+
+            <!-- Список заметок -->
+            <div class="notes-list" id="notesList">
+                <div class="empty-state">
+                    <h3>Заметок пока нет</h3>
+                    <p>Создайте свою первую заметку выше!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="storage.js"></script>
+    <script src="validator.js"></script>
+    <script src="utils.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
