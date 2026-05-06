@@ -113,7 +113,7 @@ function resetForm() {
     document.getElementById('noteTitle').value = '';
     document.getElementById('noteContent').value = '';
     document.getElementById('noteTags').value = '';
-    document.getElementById('formTitle').textContent = '\u2728 Новая заметка';
+    document.getElementById('formTitle').textContent = 'Новая заметка';
     document.getElementById('noteForm').classList.remove('active');
     editingId = null;
 }
