@@ -1,10 +1,10 @@
-// ==================== ОСНОВНОЙ МОДУЛЬ ПРИЛОЖЕНИЯ ====================
+// Основной модуль приложения
 let notes = [];
 let currentFilter = '';
 let currentTagFilter = '';
 let editingId = null;
 
-// ==================== ИНИЦИАЛИЗАЦИЯ ====================
+// Инициализации
 document.addEventListener('DOMContentLoaded', () => {
     notes = Storage.load();
     renderNotes();
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTagFilters();
 });
 
-// ==================== ОСНОВНЫЕ ФУНКЦИИ ====================
+// Основные функции
 function showMessage(text, type = 'success') {
     const msgEl = document.getElementById('message');
     msgEl.textContent = text;
@@ -118,7 +118,7 @@ function resetForm() {
     editingId = null;
 }
 
-// ==================== РЕНДЕРИНГ ====================
+// Рендеринг
 function renderNotes() {
     const container = document.getElementById('notesList');
     let filteredNotes = [...notes];
@@ -215,7 +215,7 @@ function renderTagFilters() {
     container.innerHTML = html;
 }
 
-// ==================== ФИЛЬТРАЦИЯ И ПОИСК ====================
+// Фильтрация и поиск
 function filterNotes() {
     currentFilter = document.getElementById('searchInput').value.trim();
     renderNotes();
@@ -227,7 +227,7 @@ function filterByTag(tag) {
     renderTagFilters();
 }
 
-// ==================== СТАТИСТИКА ====================
+// Статистика
 function updateStats() {
     document.getElementById('totalNotes').textContent = notes.length;
 
@@ -240,7 +240,7 @@ function updateStats() {
     document.getElementById('recentNotes').textContent = recentCount;
 }
 
-// ==================== ОБРАБОТКА ОШИБОК ====================
+// Обработка ошибок
 window.onerror = function(msg, url, line) {
     console.error(`Ошибка: ${msg} в ${url}:${line}`);
     showMessage('Произошла непредвиденная ошибка. Пожалуйста, обновите страницу.', 'error');
