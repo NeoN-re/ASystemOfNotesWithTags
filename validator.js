@@ -1,25 +1,27 @@
 // Модуль валидации
 const Validator = {
-    validateTag(tag) {
-        return /^[a-zA-Zа-яА-Я0-9_]+$/.test(tag);
+    validateTag(tag) { // Проверка отдельного тега на допустимые символы
+        return /^[a-zA-Zа-яА-Я0-9_]+$/.test(tag); // Регулярка: только буквы, цифры и подчёркивание
     },
 
-    validateNote(title, content) {
-        const errors = [];
+    validateNote(title, content) { // Проверка заголовка и содержимого заметки
+        const errors = []; // Массив для накопления ошибок
 
-        if (!title || title.trim().length === 0) {
-            errors.push('Заголовок обязателен для заполнения');
-        } else if (title.trim().length < 2) {
-            errors.push('Заголовок должен содержать минимум 2 символа');
+        // Валидация заголовка
+        if (!title || title.trim().length === 0) { // Проверка на пустоту
+            errors.push('Заголовок обязателен для заполнения'); // Добавление ошибки в массив
+        } else if (title.trim().length < 2) { // Проверка минимальной длины
+            errors.push('Заголовок должен содержать минимум 2 символа'); // Добавление ошибки в массив
         }
 
-        if (!content || content.trim().length === 0) {
-            errors.push('Содержание обязательно для заполнения');
+        // Валидация содержимого
+        if (!content || content.trim().length === 0) { // Проверка на пустоту
+            errors.push('Содержание обязательно для заполнения'); // Добавление ошибки в массив
         }
 
         return {
-            isValid: errors.length === 0,
-            errors
+            isValid: errors.length === 0, // true — ошибок нет, данные валидны
+            errors // Массив с текстами ошибок (пустой, если всё корректно)
         };
     }
 };

@@ -1,25 +1,25 @@
 // Модуль хранения
 const Storage = {
-    STORAGE_KEY: 'notes_app_data',
+    STORAGE_KEY: 'notes_app_data', // Ключ для хранения данных в localStorage
 
-    load() {
-        try {
-            const data = localStorage.getItem(this.STORAGE_KEY);
-            return data ? JSON.parse(data) : [];
-        } catch (e) {
-            console.error('Ошибка загрузки данных:', e);
-            return [];
+    load() { // Загрузка заметок из localStorage
+        try { // Обработка ошибок чтения (повреждённые данные, недоступное хранилище)
+            const data = localStorage.getItem(this.STORAGE_KEY); // Чтение строки по ключу
+            return data ? JSON.parse(data) : []; // Парсинг JSON в объект / возврат пустого массива при отсутствии данных
+        } catch (e) { // Перехват ошибки парсинга или доступа
+            console.error('Ошибка загрузки данных:', e); // Вывод ошибки в консоль
+            return []; // Возврат пустого массива — приложение остаётся работоспособным
         }
     },
 
-    save(notes) {
-        try {
-            localStorage.setItem(this.STORAGE_KEY, JSON.stringify(notes));
-            return true;
-        } catch (e) {
-            console.error('Ошибка сохранения данных:', e);
-            showMessage('Ошибка сохранения: возможно, превышен лимит хранилища', 'error');
-            return false;
+    save(notes) { // Сохранение заметок в localStorage
+        try { // Обработка ошибок записи (переполнение хранилища, недоступность)
+            localStorage.setItem(this.STORAGE_KEY, JSON.stringify(notes)); // Сериализация массива в JSON и запись
+            return true; // Подтверждение успешного сохранения
+        } catch (e) { // Перехват ошибки (например, превышен лимит в 5-10 МБ)
+            console.error('Ошибка сохранения данных:', e); // Вывод ошибки в консоль
+            showMessage('Ошибка сохранения: возможно, превышен лимит хранилища', 'error'); // Уведомление пользователя
+            return false; // Возврат false — вызывающий код может обработать неудачу
         }
     }
 };
