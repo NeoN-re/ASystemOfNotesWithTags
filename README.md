@@ -16,3 +16,6 @@ utils.js
 Модуль вспомогательных функций
 app.js
 Основной модуль — логика приложения
+
+# Команда клонирования
+git clone git@github.com:NeoN-re/ASystemOfNotesWithTags.git
